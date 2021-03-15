@@ -39,6 +39,12 @@ function stats(cb) {
   });
 }
 
+app.get('/api/env', function (req, res) {
+  getSpeakers(function (err, result) {
+    res.send(process.env)
+  });
+});
+
 app.get('/api/speakers', function (req, res) {
   getSpeakers(function (err, result) {
     if (!err) {
