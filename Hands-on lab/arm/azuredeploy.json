@@ -397,33 +397,6 @@
             }
         },
         {
-            "type": "Microsoft.DocumentDb/databaseAccounts",
-            "apiVersion": "2020-04-01",
-            "name": "[variables('cosmosName')]",
-            "location": "[parameters('CosmosLocation')]",
-            "kind": "[variables('cosmosApi')]",
-            "properties": {
-                "databaseAccountOfferType": "[variables('cosmosSku')]",
-                "locations": [
-                    {
-                        "id": "[concat(variables('cosmosName'), '-', parameters('CosmosLocation'))]",
-                        "failoverPriority": 0,
-                        "locationName": "[parameters('CosmosLocationName')]"
-                    },
-                    {
-                        "id": "[concat(variables('cosmosName'), '-', parameters('CosmosPairedLocation'))]",
-                        "failoverPriority": 1,
-                        "locationName": "[parameters('CosmosPairedLocationName')]"
-                    }
-                ],
-                "enableMultipleWriteLocations": false,
-                "isVirtualNetworkFilterEnabled": false
-            },
-            "tags": {
-                "defaultExperience": "[variables('cosmosApiExperience')]"
-            }
-        },
-        {
             "type": "Microsoft.Insights/components",
             "apiVersion": "2015-05-01",
             "name": "[variables('appInsightsNames')[copyIndex()]]",
