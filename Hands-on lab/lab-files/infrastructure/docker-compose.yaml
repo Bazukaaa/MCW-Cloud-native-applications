@@ -14,36 +14,39 @@ services:
     ports:
       - 27017:27017
 
-  medical-contoso-init-database:
-    image: quay.io/linxianer12/medical-contoso-init-database:1.0.0
-    container_name: medical-contoso-init-database
+  content-init:
+    image: fabmedicalntt.azurecr.io/content-init:1.0.1
+    container_name: content-init
     restart: always
     environment:
       - COMPANY=NTT
+      - MONGODB_CONNECTION=mongodb://mongo:27017/contentdb
     networks:
       - fabmedical
 
-  medical-contoso-api:
-    image: quay.io/linxianer12/medical-contoso-api:1.0.0
-    container_name: medical-contoso-api
+  content-api:
+    image: fabmedicalntt.azurecr.io/content-api:1.0.1
+    container_name: content-api
     restart: always
     environment:
       - COMPANY=NTT
-    networks:
-      - fabmedical
-    ports:
-      - 3000:3000
-
-  medical-contoso-frontend:
-    image: quay.io/linxianer12/medical-contoso-frontend:1.0.0
-    container_name: medical-contoso-frontend
-    restart: always
-    environment:
-      - COMPANY=NTT
+      - MONGODB_CONNECTION=mongodb://mongo:27017/contentdb
     networks:
       - fabmedical
     ports:
       - 3001:3001
+
+  content-web:
+    image: fabmedicalntt.azurecr.io/content-web:1.0.1
+    container_name: content-web
+    restart: always
+    environment:
+      - COMPANY=NTT
+      - CONTENT_API_URL=http://content-api:3001
+    networks:
+      - fabmedical
+    ports:
+      - 3000:3000
     
 networks:
   fabmedical:
