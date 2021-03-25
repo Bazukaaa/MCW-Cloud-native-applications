@@ -1,4 +1,6 @@
 # Refactoring Applciation to Cloud Native
+** Directory lab-file/developer จำเป็นต้องแก้โค้ดก่อนจึงใช้งานได้
+** Directory lab-file/infrastructure เป็น source code สำเร็จรูปพร้อมใช้งาน
 Clone Project ไปยัง Azure Cloud Shell เพื่อจะ Deploy ARM Template
 ```
 git clone https://github.com/wdrdres3qew5ts21/MCW-Cloud-native-applications
@@ -181,11 +183,12 @@ To permanently disable this reminder, run the following command: db.disableFreeM
 
 
 # ทดลองใช้ Container สำเร็จรูป
-### จะ error เพราะว่าอยู่กันคนล่ะ Namespace
-docker run  -d     quay.io/linxianer12/medical-contoso-init-database:1.0.0
+จะขึ้น error เพราะว่าเราไม่ระบุ Network ของ Container และไม่ได้ตั้งค่า Service Discovery
+docker run  -d  quay.io/linxianer12/medical-contoso-init-database:1.0.0
 docker run  -d  -p 3001:3001  quay.io/linxianer12/medical-contoso-api:1.0.0
 docker run  -d  -p 3000:3000  quay.io/linxianer12/medical-contoso-frontend:1.0.0
 
+เข้าไปที่ Directory infrastrucuture เพื่อลองใช้ Script สำเร็จรูป
 docker-compose up
 
 docker-compose up -f docker-compose-real.yaml

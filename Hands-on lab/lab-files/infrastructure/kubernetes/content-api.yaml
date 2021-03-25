@@ -1,0 +1,33 @@
+piVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: content-api
+  name: content-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: content-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: content-api
+    spec:
+      imagePullSecrets:
+      - name: my-registry
+      containers:
+      - image: quay.io/linxianer12/medical-contoso-api:1.0.0
+        name: content-api
+        resources: {}
+        env:
+        - name: MONGODB_CONNECTION
+          valueFrom:
+            configMapKeyRef:
+              name: fabmedical-config
+              key: MONGODB_CONNECTION
+
+status: {}

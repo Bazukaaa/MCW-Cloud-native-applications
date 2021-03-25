@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: content-web
+  name: content-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: content-web
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: content-web
+    spec:
+      containers:
+      - image: quay.io/linxianer12/medical-contoso-frontend:1.0.0
+        name: content-web
+        resources: {}
+        env:
+        - name: CONTENT_API_URL
+          valueFrom:
+            configMapKeyRef:
+              name: fabmedical-config
+              key: CONTENT_API_URL
+
+status: {}

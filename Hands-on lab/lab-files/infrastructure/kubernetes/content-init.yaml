@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: content-init
+  name: content-init
+spec:
+  imagePullSecrets:
+  - name: my-registry
+  containers:
+  - image: quay.io/linxianer12/medical-contoso-init-database:1.0.0
+    name: content-init
+    resources: {}
+    env:
+    - name: MONGODB_CONNECTION
+      valueFrom:
+        configMapKeyRef:
+          name: fabmedical-config
+          key: MONGODB_CONNECTION
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
