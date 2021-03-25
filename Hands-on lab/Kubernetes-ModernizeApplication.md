@@ -179,25 +179,24 @@ To permanently disable this reminder, run the following command: db.disableFreeM
 ```
 เมื่อแสดงผลลัพธ์ของ Collections จะไม่มีข้อมูลเพราะว่าเรานั้นไม่มีข้อมูลอยู่
 
-
-
-
 # ทดลองใช้ Container สำเร็จรูป
+*** ขั้นตอนนี้ไม่ต้องทำตามก็ได้ข้ามไปที่ Build Project and publish to private registry ได้เลย
 จะขึ้น error เพราะว่าเราไม่ระบุ Network ของ Container และไม่ได้ตั้งค่า Service Discovery
+```
 docker run  -d  quay.io/linxianer12/medical-contoso-init-database:1.0.0
 docker run  -d  -p 3001:3001  quay.io/linxianer12/medical-contoso-api:1.0.0
 docker run  -d  -p 3000:3000  quay.io/linxianer12/medical-contoso-frontend:1.0.0
+```
+
 
 เข้าไปที่ Directory infrastrucuture เพื่อลองใช้ Script สำเร็จรูป
+```
 docker-compose up
-
 docker-compose up -f docker-compose-real.yaml
-
+```
 
 # Build Project and publish to private registry
 ### Clone Project ตัวอย่าง
-
-
 
 ```
 sudo chmod +x -R /home/adminfabmedical/.config/
