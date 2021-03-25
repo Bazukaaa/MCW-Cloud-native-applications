@@ -106,7 +106,7 @@ chmod +x init.sh
 และให้เรา Clone Project ลงยังเครื่อง VM อีกทีหนึ่ง (Cloud Shell เรา Clone เพื่อใช้ ARM Template) ส่วน VM เครื่องนี้ Clone เพื่อมาทำโปรเจค
 
 ```
-git clone https://github.com/microsoft/MCW-Cloud-native-applications
+git clone https://github.com/wdrdres3qew5ts21/MCW-Cloud-native-applications
 ```
 
 # วิธีการ Login Container Registry
