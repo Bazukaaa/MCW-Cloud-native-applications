@@ -1,7 +1,8 @@
 # Refactoring Applciation to Cloud Native
-#  clone project
-git clone https://github.com/microsoft/MCW-Cloud-native-applications
-
+Clone Project ไปยัง Azure Cloud Shell เพื่อจะ Deploy ARM Template
+```
+git clone https://github.com/wdrdres3qew5ts21/MCW-Cloud-native-applications
+```
 
 สร้าง private/public key pair สำหรับใช้ในการ SSH จาก Azure Cloud Shell
 ```
@@ -18,7 +19,7 @@ ssh-keygen -t RSA -b 2048 -C admin@fabmedical
 ```
 location=southeastasia
 
-suffix=ntt
+suffix=ntt-son
 
 az group create -l "$location" -n "fabmedical-$(echo $suffix)"
 
@@ -42,7 +43,7 @@ supakorn@Azure:~$ az ad sp show --id 6d797be5-d3da-4154-9ddb-295dd564f7f7 --quer
 ```
 สั่งสร้าง resource จาก ARM
 ```
-az deployment group create --resource-group "fabmedical-$(echo $suffix)" --template-file azuredeploy.json --parameters azuredeploy.parameters.json
+az deployment group create --resource-group "fabmedical-$(echo $suffix)" --template-file azuredeploy.json --parameters azuredeploy.parameters.json --parameters Suffix=$(echo $suffix)
 ```
 
 ```
