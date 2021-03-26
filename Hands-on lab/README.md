@@ -245,7 +245,6 @@ Server has startup warnings:2021-03-15T10:34:32.617+0000 I STORAGE  [initandlist
 ```
 แสดง Database
 ```
-> show collections
 > show databases
 admin      0.000GB
 config     0.000GB
@@ -754,7 +753,7 @@ server.listen(port, () => console.log('Running'));
 ```
 เราจะต้องแก้บรรทัดให้สามารถรับตัวแปรเข้ามาได้ด้วยการใช้ process.env.CONTENT_API_URL
 ```
-const contentApiUrl =  "http://localhost:3001";
+const contentApiUrl = process.env.CONTENT_API_URL || "http://localhost:3001";
 ```
 ผลลัพธ์ที่ถูกต้องจะต้องออกมาเป็นไฟล์ app.js ซึ่งมีการรับตัวแปรเหมือนกับ content-init และ content-api ที่ inject ตัวแปร ณ runtime ได้ 
 ###### ในบรรทัดที่ 9 จะเพิ่มตัวแปร process.env.CONTENT_API_URL
