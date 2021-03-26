@@ -1562,7 +1562,38 @@ kubectl apply -f fabmedical-ingress.yaml
 
 
 # DevOps Pipeline
-ให้เรา copy file content-web.yaml ไปวางที่ directory ของ content-api และแก้ไขไฟล์ให้มี annotations และ image ให้แก้เป็นใช้ TAG ดั่งตัวอย่างคำสั่ง
+เราจะนำ content-web ไปเก็บใน Repository บน Azure DevOps โดยการสร้าง Repository บน Azure DevOps และ Push ขึ้นไป
+#### 1. สร้าง Repository content-web ใน Azure DevOps
+![](lab-files/assets/devops/repository.png)
+
+ทำการ Generate Git Credentials มาผ่านปุ่ม Generate Git Credentials
+![](lab-files/assets/devops/generate-creden.png)
+ให้เรากลับไป Directory เริ่มต้นของโปรเจคและใช้คำสั่งลบ config เกี่ยวกับ git ออกไปเพราะเราจะทำการ push ไปที่ Azure DevOps ของเราแทน Github
+```
+~/MCW-Cloud-native-applications$ rm -rf .git
+```
+เมื่อลบเสร็จแล้วให้กลับไปที่ Directory ~/MCW-Cloud-native-applications/Hands-on lab/lab-files/developer/content-web ของเรา
+
+ใช้คำสั่งจาก Push an existing repository from command line และนำ Credentials ที่ได้จากการ Generate ไปใช้ในการ Authentication 
+```
+git remote add origin https://6370279821@dev.azure.com/6370279821/content-web/_git/content-web
+
+git push -u origin --all
+```
+กลับไปใช้คำสั่งดั่งนี้เพื่อทำการ add file ที่เกี่ยวข้องไปใน git และอัพไปยัง repository
+
+```
+git add *
+
+git commit -m "[ADD] Project"
+
+git push --set-upstream origin master
+```
+ผลลัพธ์จากการนำไฟล์ไปเก็บใน git
+![](lab-files/assets/devops/add-success.png)
+
+
+ให้เรา copy file content-web.yaml ไปวางที่ directory ของ content-web และแก้ไขไฟล์ให้มี annotations และ image ให้แก้เป็นใช้ TAG ดั่งตัวอย่างคำสั่ง
 content-web.yaml
 ```
 apiVersion: apps/v1
@@ -1599,6 +1630,7 @@ spec:
 
 status: {}
 ```
+และทำการ push file นี้ไปที่ git ของเรา
 
 และแก้ไขไฟล์ให้เชื่อม Connection ระหว่าง Azure DevOps ไปยัง Kubernetes และ Private Container Registry 
 
