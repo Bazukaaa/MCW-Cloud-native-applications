@@ -287,7 +287,7 @@
             },
             "identity": {
                 "type": "SystemAssigned"
-            }            
+            }
         },
         {
             "name": "[parameters('guid')]",
@@ -375,7 +375,7 @@
                     ]
                 }
             }
-        },
+        }
     ],
     "outputs": {
         "VirtualMachineAdminUsernameLinux": {
