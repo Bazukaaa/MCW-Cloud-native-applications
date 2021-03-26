@@ -100,7 +100,7 @@
         "cosmosName": "[concat('fabmedical-', toLower(parameters('Suffix')))]",
         "cosmosSku": "Standard",
         "cosmosApi": "MongoDB",
-        "cosmosApiExperience": "Azure Cosmos DB for MongoDB API",
+        "cosmosApiExperience": "Azure Cosmos DB for MongoDB API"
     },
     "resources": [
         {

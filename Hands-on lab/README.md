@@ -44,6 +44,7 @@ supakorn@Azure:~$ az ad sp show --id 6d797be5-d3da-4154-9ddb-295dd564f7f7 --quer
 }
 ```
 สั่งสร้าง resource จาก ARM
+โดยให้เข้าไปที่ directory Hands-on lab/arm แล้วทำการ deploy ARM Template
 ```
 az deployment group create --resource-group "fabmedical-$(echo $suffix)" --template-file azuredeploy.json --parameters azuredeploy.parameters.json --parameters Suffix=$(echo $suffix)
 ```
