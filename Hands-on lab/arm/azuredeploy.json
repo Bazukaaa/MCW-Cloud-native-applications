@@ -17,22 +17,6 @@
         "VirtualMachineAdminPublicKeyLinux": {
             "type": "securestring"
         },
-        "CosmosLocation": {
-            "type": "string",
-            "defaultValue": "eastus"
-        },
-        "CosmosLocationName": {
-            "type": "string",
-            "defaultValue": "East US"
-        },
-        "CosmosPairedLocation": {
-            "type": "string",
-            "defaultValue": "westus"
-        },
-        "CosmosPairedLocationName": {
-            "type": "string",
-            "defaultValue": "West US"
-        },
         "guid": {
             "type": "string",
             "defaultValue": "[newGuid()]"
@@ -117,10 +101,6 @@
         "cosmosSku": "Standard",
         "cosmosApi": "MongoDB",
         "cosmosApiExperience": "Azure Cosmos DB for MongoDB API",
-        "appInsightsNames": [
-            "content-web",
-            "content-api"
-        ]
     },
     "resources": [
         {
@@ -396,24 +376,6 @@
                 }
             }
         },
-        {
-            "type": "Microsoft.Insights/components",
-            "apiVersion": "2015-05-01",
-            "name": "[variables('appInsightsNames')[copyIndex()]]",
-            "location": "[parameters('Location')]",
-            "kind": "web",
-            "properties": {
-                "ApplicationId": "[variables('appInsightsNames')[copyIndex()]]",
-                "Application_Type": "web",
-                "Flow_Type": "Bluefield",
-                "Request_Source": "rest"
-            },
-            "copy": {
-                "name": "appinsightscopy",
-                "count": "[length(variables('appInsightsNames'))]",
-                "mode": "Parallel"
-            }
-        }
     ],
     "outputs": {
         "VirtualMachineAdminUsernameLinux": {
