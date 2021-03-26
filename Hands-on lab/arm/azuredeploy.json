@@ -24,6 +24,10 @@
         "guid2": {
             "type": "string",
             "defaultValue": "[newGuid()]"
+        },
+        "NickName": {
+            "type": "string",
+            "defaultValue": "son"
         }
     },
     "variables": {
