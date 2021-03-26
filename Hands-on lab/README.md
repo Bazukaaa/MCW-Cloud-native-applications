@@ -929,7 +929,7 @@ docker-compose up
 ```
 az login
 
-az aks get-credentials -g fabmedical-ntt -n fabmedical-ntt
+az aks get-credentials -g "fabmedical-$(echo $suffix)" -n "fabmedical-$(echo $suffix)"
 ```
 ทดสอบคำสั่ง Kubernetes พื้นฐาน
 ```
