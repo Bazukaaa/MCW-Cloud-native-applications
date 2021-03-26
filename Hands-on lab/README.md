@@ -6,7 +6,7 @@ Clone Project ไปยัง Azure Cloud Shell เพื่อจะ Deploy ARM
 git clone https://github.com/wdrdres3qew5ts21/MCW-Cloud-native-applications
 ```
 
-สร้าง private/public key pair สำหรับใช้ในการ SSH จาก Azure Cloud Shell
+สร้าง private/public key pair สำหรับใช้ในการ SSH จาก Azure Cloud Shell และไม่จำเป้นต้องใส่ passphrase ให้กด enter ข้ามไปได้เลย (สำหรับ lab environment ไม่จำเป็นต้องใช้ passphrase key เพื่อหใ้เราสะดวกในการ login มีเพียงแค่ Private Key ก็เพียงพอแล้ว)
 ```
 ssh-keygen -t RSA -b 2048 -C admin@fabmedical
 ```
@@ -16,12 +16,13 @@ ssh-keygen -t RSA -b 2048 -C admin@fabmedical
 "VirtualMachineAdminPublicKeyLinux"
 ```
 
-ให้ตั้ง Suffix ตามชื่อองค์กรของตัวเอง
+ให้ตั้ง Suffix ตามชื่อองค์กรของตัวเองตามด้วยชื่อเล่น สาเหตุที่ต้องตั้งนั้นเพราะว่า Script จะไปสร้าง Container Registry สำหรับท่านที่เข้า Workshop
+ซึ่งถ้าหากไม่เปลี่ยนเป็นชื่อของตัวเองจะมีโอกาส Container Registry Name ชนกันแล้วไม่สามารถสร้างได้
 
 ```
 location=southeastasia
-
-suffix=ntt-son
+suffix=ntt
+nickname=son
 
 az group create -l "$location" -n "fabmedical-$(echo $suffix)"
 
@@ -46,7 +47,7 @@ supakorn@Azure:~$ az ad sp show --id 6d797be5-d3da-4154-9ddb-295dd564f7f7 --quer
 สั่งสร้าง resource จาก ARM
 โดยให้เข้าไปที่ directory Hands-on lab/arm แล้วทำการ deploy ARM Template
 ```
-az deployment group create --resource-group "fabmedical-$(echo $suffix)" --template-file azuredeploy.json --parameters azuredeploy.parameters.json --parameters Suffix=$(echo $suffix)
+az deployment group create --resource-group "fabmedical-$(echo $suffix)" --template-file azuredeploy.json --parameters azuredeploy.parameters.json --parameters Suffix=$(echo $suffix) --parameters NickName=$(echo $nickname)
 ```
 
 ```

@@ -82,7 +82,7 @@
         "virtualMachineNameLinux": "[concat('fabmedical-', parameters('Suffix'))]",
         "virtualMachineSizeLinux": "Standard_D2s_v3",
         "virtualMachineOsDiskTypeLinux": "StandardSSD_LRS",
-        "registryName": "[concat('fabmedical', parameters('Suffix'))]",
+        "registryName": "[concat('fabmedical', parameters('Suffix'), parameters('nickname')   )]",
         "registrySku": "Standard",
         "registryAdminUserEnabled": true,
         "kubernetesClusterName": "[concat('fabmedical-', parameters('Suffix'))]",
