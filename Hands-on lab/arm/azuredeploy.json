@@ -76,7 +76,7 @@
         "publicIpAddressSkuLinux": "Basic",
         "networkInterfaceNameLinux": "[concat('fabmedical-', parameters('Suffix'))]",
         "nsgIdLinux": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupNameLinux'))]",
-        "diagnosticsStorageAccountNameLinux": "[tolower(concat('fab', 'medical', 'diag',uniqueString(resourceGroup().id)))]",
+        "diagnosticsStorageAccountNameLinux": "[tolower(concat('fab',uniqueString(resourceGroup().id)))]",
         "diagnosticsStorageAccountTypeLinux": "Standard_LRS",
         "diagnosticsStorageAccountKindLinux": "Storage",
         "virtualMachineNameLinux": "[concat('fabmedical-', parameters('Suffix'))]",
