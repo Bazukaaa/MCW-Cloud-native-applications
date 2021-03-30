@@ -73,22 +73,6 @@ supakorn@Azure:~$ az ad sp show --id 6d797be5-d3da-4154-9ddb-295dd564f7f7 --quer
 az deployment group create --resource-group "fabmedical-$(echo $suffix)" --template-file azuredeploy.json --parameters azuredeploy.parameters.json --parameters Suffix=$(echo $suffix) --parameters NickName=$(echo $nickname)
 ```
 
-```
-     "CosmosLocation": {
-            "value": "southeastasia"
-        },
-        "CosmosLocationName": {
-            "value": "East Asia"
-        },
-        "CosmosPairedLocation": {
-            "value": "Southeast Asia"
-        },
-        "CosmosPairedLocationName": {
-            "value": "Southeast Asia"
-        }
-```
-
-
 # Init Script for Bastion VM
 ### *ตั้งแต่ขั้นตอนนี้เป็นต้นไปเราจะอยู่ใน VM ที่สร้างขึ้นมาใหม่ ไม่ได้อยู่ใน Cloud Shell 
 ให้เราทำการ shell เข้าไปยัง VM ที่ที่สร้างเสร็จขึ้นมาซึ่ง VM นั้นจะใช้ในการ Development Build Push Container ต่างๆ
