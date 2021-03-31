@@ -44,7 +44,7 @@ ssh-keygen -t RSA -b 2048 -C admin@fabmedical
 
 ```
 location=southeastasia
-suffix=redhat
+suffix=ntt
 nickname=lin
 
 az group create -l "$location" -n "fabmedical-$(echo $suffix)"
